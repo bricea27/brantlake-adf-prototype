@@ -15,9 +15,6 @@ This is a **reference design**, not a deployable WordPress page. Hand it to the 
 - **Goal:** turn a flat CMS text page into an emotional fundraising appeal that converts.
 - **Brand fit:** stays inside the existing Green & Gray identity. No new fonts beyond the site's existing Montserrat (plus one optional accent: Fraunces, for emotional pull-quote moments).
 
-The companion critique with rationale lives at
-`~/.claude/plans/can-you-leverage-this-memoized-fox.md`.
-
 ---
 
 ## Brand tokens used
@@ -96,4 +93,3 @@ All placeholder spots are marked in the HTML with `<!-- PLACEHOLDER: ... -->` co
 
 - `index.html` — the prototype.
 - This `README.md` — handoff notes.
-- (Reference) `~/.claude/plans/can-you-leverage-this-memoized-fox.md` — the original written critique with rationale.
