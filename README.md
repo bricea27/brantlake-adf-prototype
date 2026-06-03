@@ -46,7 +46,7 @@ All values are declared as CSS custom properties at the top of `index.html` unde
 
 1. **Hero** — full-bleed photo, deep-green gradient overlay, big H1, italic sub, primary `Donate` button + secondary "Read Andrew's story ↓" link.
 2. **Who was Andrew** — portrait + short personal copy on a warm cream surface.
-3. **How the Fund works** — three rounded cards: *You give → Directors match half → A boy goes to camp.*
+3. **How the Fund works** — three rounded cards: *You give → Camp waives half → A boy goes to camp.*
 4. **Impact** — four stat cards + a single Fraunces pull-quote testimonial with a leaf-green left rule.
 5. **Donate band** — full-width deep-green section with suggested amount chips, large leaf-green `Donate Securely` button, and 501(c)(3) fine print directly under it.
 6. **Contact** — clean two-column layout with a contact card for Bill Frischling and a small ACA / heritage badge.
