@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Andrew Dreyer Memorial Fund · Brant Lake Camp</title>
+  <meta name="description" content="For over 40 years, the Andrew Dreyer Memorial Fund has sent boys to Brant Lake who otherwise never could. Every gift is doubled by the camp directors." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ---------- Tokens ---------- */
+    :root {
+      --pine:        #063430;  /* dominant deep green */
+      --pine-teal:   #276f67;  /* secondary surfaces / dividers */
+      --leaf:        #0c8c3c;  /* accent only — buttons, links, stat numerals */
+      --leaf-deep:   #097030;  /* hover/active for leaf, AA-safer for text-on-leaf */
+      --cream:       #FAF8F3;  /* page bg */
+      --cream-warm:  #F2EDE0;  /* alt surface */
+      --ink:         #1B2826;  /* body text — near-black with green tint */
+      --ink-soft:    #4A5856;  /* muted body */
+      --rule:        #DCD6C6;  /* hairlines on cream */
+
+      --max:         1200px;
+      --radius-lg:   18px;
+      --radius-md:   14px;
+      --shadow-soft: 0 10px 30px rgba(6, 52, 48, 0.08), 0 2px 6px rgba(6, 52, 48, 0.04);
+      --shadow-hi:   0 20px 50px rgba(6, 52, 48, 0.18);
+
+      --t-fast: 160ms ease-out;
+      --t-slow: 360ms cubic-bezier(.2,.7,.2,1);
+    }
+
+    /* ---------- Reset-ish ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-size: 18px;
+      line-height: 1.65;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--leaf-deep); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* Focus — visible, on-brand */
+    a:focus-visible,
+    button:focus-visible,
+    .btn:focus-visible,
+    .chip:focus-visible {
+      outline: 3px solid var(--leaf);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ---------- Layout ---------- */
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    @media (min-width: 768px) { .wrap { padding: 0 40px; } }
+
+    section { padding: 4rem 0; }
+    @media (min-width: 768px) { section { padding: 6rem 0; } }
+    @media (min-width: 1024px) { section { padding: 7rem 0; } }
+
+    /* ---------- Type ---------- */
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--leaf);
+    }
+    .eyebrow.on-dark { color: #B7E2C3; }
+
+    h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--pine); margin: 0; }
+    h1 {
+      font-weight: 800;
+      font-size: clamp(2.25rem, 5.5vw, 4.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+    }
+    h2 {
+      font-weight: 700;
+      font-size: clamp(1.75rem, 3.4vw, 2.75rem);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    h3 { font-weight: 700; font-size: 1.125rem; line-height: 1.3; }
+
+    .lede {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(1.125rem, 1.8vw, 1.5rem);
+      line-height: 1.45;
+      color: #E9EFE9;
+    }
+
+    p { margin: 0 0 1em; color: var(--ink-soft); }
+    .lead { font-size: 1.125rem; color: var(--ink); }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6em;
+      min-height: 48px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      font: inherit;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: transform var(--t-fast), background-color var(--t-fast), box-shadow var(--t-fast), color var(--t-fast);
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--leaf);
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(12,140,60,0.30);
+    }
+    .btn-primary:hover { background: var(--leaf-deep); box-shadow: 0 10px 24px rgba(12,140,60,0.40); transform: translateY(-1px); text-decoration: none; color: #fff; }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-ghost {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255,255,255,0.45);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.10); border-color: #fff; text-decoration: none; color: #fff; }
+
+    .btn-link {
+      background: transparent;
+      color: #fff;
+      padding: 14px 8px;
+      min-height: 0;
+    }
+    .btn-link:hover { color: #B7E2C3; text-decoration: none; }
+    .btn-link .arrow { transition: transform var(--t-fast); }
+    .btn-link:hover .arrow { transform: translateY(2px); }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      padding: 0;
+      color: #fff;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(135deg, rgba(6,52,48,0.85) 0%, rgba(6,52,48,0.55) 45%, rgba(6,52,48,0.30) 100%),
+        url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=2400&q=80') center/cover no-repeat;
+      z-index: -2;
+    }
+    .hero::after {
+      /* fallback green field if photo fails */
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(120% 80% at 30% 30%, var(--pine-teal) 0%, var(--pine) 70%);
+      z-index: -3;
+    }
+    .hero-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 7rem 24px 5rem;
+      display: grid;
+      gap: 1.5rem;
+      min-height: 88vh;
+      align-content: end;
+    }
+    @media (min-width: 768px) {
+      .hero-inner { padding: 8rem 40px 6rem; gap: 1.75rem; max-width: var(--max); }
+    }
+    .hero h1 { color: #fff; max-width: 14ch; }
+    .hero .lede { max-width: 32ch; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-top: 0.5rem; }
+
+    /* tiny brand strip at top */
+    .hero-brand {
+      position: absolute; top: 0; left: 0; right: 0;
+      padding: 1.25rem 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+    }
+    @media (min-width: 768px) { .hero-brand { padding: 1.5rem 40px; } }
+    .hero-brand a { color: inherit; }
+    .hero-brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--leaf); display: inline-block; vertical-align: middle; margin: 0 0.6em; }
+
+    /* ---------- Andrew section ---------- */
+    .andrew {
+      background: var(--cream-warm);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .andrew-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    @media (min-width: 900px) {
+      .andrew-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 5rem; }
+    }
+    .portrait {
+      aspect-ratio: 4 / 5;
+      width: 100%;
+      max-width: 460px;
+      background:
+        linear-gradient(180deg, rgba(6,52,48,0.06), rgba(6,52,48,0.02)),
+        var(--cream);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-lg);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink-soft);
+      text-align: center;
+      padding: 2rem;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+    .portrait::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(45deg, rgba(6,52,48,0.025) 0 2px, transparent 2px 14px);
+      pointer-events: none;
+    }
+    .portrait small { display: block; margin-top: 0.6rem; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
+    .portrait .frame {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--pine);
+    }
+    .andrew h2 { margin-bottom: 1rem; }
+    .andrew .wordmark {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 500;
+      font-style: italic;
+      color: var(--pine-teal);
+      font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+      margin: 0.25rem 0 1.25rem;
+    }
+
+    /* ---------- How it works ---------- */
+    .how { background: var(--cream); }
+    .section-head { max-width: 56ch; margin-bottom: 3rem; }
+    .section-head .eyebrow { display: block; margin-bottom: 0.85rem; }
+    .section-head h2 { margin-bottom: 1rem; }
+    .section-head p { font-size: 1.0625rem; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    @media (min-width: 768px)  { .cards { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; } }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.75rem;
+      box-shadow: var(--shadow-soft);
+      transition: transform var(--t-slow), box-shadow var(--t-slow);
+      position: relative;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hi); }
+    .card .num {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 500;
+      font-style: italic;
+      font-size: 2rem;
+      color: var(--leaf);
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .card .icon {
+      width: 44px; height: 44px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 12px;
+      background: rgba(12,140,60,0.10);
+      color: var(--leaf-deep);
+      margin-bottom: 1rem;
+    }
+    .card h3 { color: var(--pine); margin-bottom: 0.5rem; font-size: 1.1875rem; }
+    .card p { margin: 0; }
+
+    /* ---------- Impact ---------- */
+    .impact { background: var(--cream-warm); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    @media (min-width: 900px) { .stats { grid-template-columns: repeat(4, 1fr); gap: 2rem; } }
+
+    .stat .num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.5rem, 4.5vw, 3.75rem);
+      letter-spacing: -0.02em;
+      color: var(--pine);
+      line-height: 1;
+      display: block;
+    }
+    .stat .num em {
+      font-style: normal;
+      color: var(--leaf);
+    }
+    .stat .label {
+      display: block;
+      margin-top: 0.5rem;
+      padding-top: 0.85rem;
+      font-size: 0.875rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      border-top: 2px solid var(--leaf);
+      max-width: 12ch;
+    }
+
+    .quote {
+      max-width: 760px;
+      margin: 0;
+      padding: 0 0 0 2rem;
+      border-left: 3px solid var(--leaf);
+    }
+    .quote blockquote {
+      margin: 0;
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.375rem, 2.4vw, 1.875rem);
+      line-height: 1.4;
+      color: var(--pine);
+    }
+    .quote cite {
+      display: block;
+      margin-top: 1.25rem;
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal;
+      font-size: 0.8125rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    /* ---------- Donate band ---------- */
+    .donate-band {
+      background:
+        radial-gradient(80% 120% at 10% 0%, rgba(39,111,103,0.55) 0%, transparent 60%),
+        var(--pine);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .donate-band::after {
+      /* soft top hairline */
+      content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    }
+    .donate-band h2 { color: #fff; max-width: 16ch; }
+    .donate-band .lead { color: #E9EFE9; max-width: 50ch; }
+    .donate-grid {
+      display: grid; gap: 2.5rem;
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+    @media (min-width: 900px) { .donate-grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+    .donate-cta { display: flex; flex-direction: column; gap: 1.25rem; }
+    .chips {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .chip {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 44px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.35);
+      background: transparent;
+      color: #fff;
+      font: inherit;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      cursor: pointer;
+      transition: background-color var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
+    }
+    .chip:hover { background: rgba(255,255,255,0.10); border-color: #fff; }
+    .chip.active { background: #fff; color: var(--pine); border-color: #fff; }
+
+    .donate-fineprint {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.04em;
+      line-height: 1.6;
+    }
+    .donate-fineprint strong { color: #fff; font-weight: 600; }
+
+    /* ---------- Contact ---------- */
+    .contact { background: var(--cream); }
+    .contact-grid {
+      display: grid;
+      gap: 2.5rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 900px) { .contact-grid { grid-template-columns: 5fr 7fr; gap: 5rem; } }
+
+    .contact-card {
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      box-shadow: var(--shadow-soft);
+    }
+    .contact-card .name { font-weight: 700; color: var(--pine); font-size: 1.125rem; }
+    .contact-card .role { color: var(--ink-soft); font-size: 0.9375rem; margin-bottom: 1rem; }
+    .contact-card dl { margin: 0; display: grid; gap: 0.65rem; }
+    .contact-card dt {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .contact-card dd { margin: 0; color: var(--ink); }
+    .contact-card a { color: var(--leaf-deep); }
+
+    .accred {
+      display: flex; gap: 0.75rem; align-items: center;
+      margin-top: 1.5rem; padding-top: 1.25rem;
+      border-top: 1px solid var(--rule);
+      color: var(--ink-soft); font-size: 0.8125rem;
+    }
+    .accred .badge {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--cream-warm);
+      border: 1px solid var(--rule);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 0.875rem;
+      color: var(--pine-teal);
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: var(--pine);
+      color: rgba(255,255,255,0.75);
+      padding: 3rem 0;
+      font-size: 0.875rem;
+    }
+    footer .wrap { display: grid; gap: 1.5rem; grid-template-columns: 1fr; align-items: center; }
+    @media (min-width: 768px) { footer .wrap { grid-template-columns: 1fr auto; } }
+    footer .brand { color: #fff; font-weight: 700; letter-spacing: 0.04em; }
+    footer a { color: rgba(255,255,255,0.85); }
+    footer a:hover { color: #fff; }
+
+    /* ---------- Sticky mobile mini-CTA ---------- */
+    .sticky-cta {
+      position: fixed;
+      right: 16px; bottom: 16px;
+      z-index: 50;
+      display: none;
+    }
+    @media (max-width: 767px) { .sticky-cta { display: inline-flex; } }
+    .sticky-cta .btn-primary { box-shadow: 0 12px 28px rgba(12,140,60,0.45); }
+
+    /* ---------- Decorative divider ---------- */
+    .divider {
+      display: block;
+      width: 56px; height: 2px;
+      background: var(--leaf);
+      margin: 0 0 1.5rem;
+    }
+    .divider.on-dark { background: var(--leaf); }
+
+    /* tighten lede width on hero */
+    @media (max-width: 540px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero .lede { font-size: 1.0625rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============== HERO ============== -->
+  <header class="hero" id="top">
+    <div class="hero-brand">
+      <span><strong style="font-weight:700;letter-spacing:0.22em;">BRANT LAKE CAMP</strong><span class="dot"></span>EST. 1916</span>
+      <a href="#" aria-label="Back to brantlake.com">brantlake.com →</a>
+    </div>
+
+    <!-- PLACEHOLDER: replace background-image in .hero::before with a real high-res camp photo (waterfront, canoes, cabin group, etc.) -->
+    <div class="hero-inner">
+      <span class="eyebrow on-dark">In memory of Andrew Dreyer</span>
+      <h1>The Andrew Dreyer Memorial&nbsp;Fund</h1>
+      <p class="lede">Sending boys to Brant Lake who otherwise never could &mdash; for forty years and counting.</p>
+      <div class="hero-actions">
+        <!-- PLACEHOLDER: replace href with the live secure.usaepay.com URL from brantlake.com -->
+        <a href="https://secure.usaepay.com/" class="btn btn-primary" rel="noopener">
+          Donate to the Fund
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#andrew" class="btn btn-link">
+          Read Andrew&rsquo;s story
+          <span class="arrow" aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============== WHO WAS ANDREW ============== -->
+  <section class="andrew" id="andrew">
+    <div class="wrap">
+      <div class="andrew-grid">
+        <!-- PLACEHOLDER: replace this card with a real portrait of Andrew Dreyer when available -->
+        <figure class="portrait" aria-label="Portrait of Andrew Dreyer placeholder">
+          <div>
+            <span class="frame">A.D.</span>
+            <small>Portrait of Andrew Dreyer</small>
+          </div>
+        </figure>
+
+        <div>
+          <span class="eyebrow">In Memoriam</span>
+          <h2 style="margin-top:0.85rem;">Andrew Dreyer</h2>
+          <p class="wordmark">A Brant Laker, remembered by the brothers who knew him.</p>
+          <span class="divider"></span>
+          <!-- PLACEHOLDER: 2–3 sentence personal bio of Andrew, supplied by the family or fund -->
+          <p class="lead">
+            Andrew spent his summers on the shores of Brant Lake and carried what he found here &mdash;
+            the friendships, the lake at dawn, the easy belonging &mdash; with him for the rest of his life.
+            When he was gone, the alums who loved him decided that other boys should have that summer too.
+          </p>
+          <p>
+            More than four decades later, the Fund they started in his name is still doing exactly that.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== HOW IT WORKS ============== -->
+  <section class="how">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How the Fund Works</span>
+        <h2>A gift that&rsquo;s doubled, and a summer that&rsquo;s never forgotten.</h2>
+        <p>The Andrew Dreyer Memorial Fund is run by a small group of alumni and is matched by the camp&rsquo;s directors. Every dollar travels further than you think.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <span class="num">01</span>
+          <span class="icon" aria-hidden="true">
+            <!-- gift icon -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3>You give</h3>
+          <p>Any amount makes a difference. A gift of $250 is more than a token &mdash; it&rsquo;s a real share of a summer.</p>
+        </article>
+
+        <article class="card">
+          <span class="num">02</span>
+          <span class="icon" aria-hidden="true">
+            <!-- handshake / match icon -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 12l4-4 5 5 4-4 5 5M3 12l3 3M21 13l-3 3M12 13l2 2-3 3-2-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3>Directors match half</h3>
+          <p>For every scholarship the Fund awards, the camp&rsquo;s directors quietly cover half. Your dollar becomes two.</p>
+        </article>
+
+        <article class="card">
+          <span class="num">03</span>
+          <span class="icon" aria-hidden="true">
+            <!-- cabin icon -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H10v6H4a1 1 0 0 1-1-1z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3>A boy goes to camp</h3>
+          <p>A kid who otherwise would never see Brant Lake spends a summer here &mdash; on the water, in a cabin group, becoming someone new.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== IMPACT ============== -->
+  <section class="impact">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Forty years of summers</span>
+        <h2>What the Fund has done since 1984.</h2>
+      </div>
+
+      <div class="stats" role="list">
+        <div class="stat" role="listitem">
+          <!-- PLACEHOLDER: confirm exact founding year -->
+          <span class="num"><em>40+</em></span>
+          <span class="label">Years of scholarships</span>
+        </div>
+        <div class="stat" role="listitem">
+          <!-- PLACEHOLDER: total boys sponsored — supply from camp records -->
+          <span class="num">[#]</span>
+          <span class="label">Boys sponsored to date</span>
+        </div>
+        <div class="stat" role="listitem">
+          <span class="num">50<em>%</em></span>
+          <span class="label">Matched by camp directors</span>
+        </div>
+        <div class="stat" role="listitem">
+          <!-- PLACEHOLDER: cost of a summer at Brant Lake -->
+          <span class="num">$[X]</span>
+          <span class="label">Cost of a full summer</span>
+        </div>
+      </div>
+
+      <figure class="quote">
+        <!-- PLACEHOLDER: real testimonial from an alum, scholarship recipient, or family member -->
+        <blockquote>
+          &ldquo;My summers at Brant Lake changed the trajectory of my life.
+          I am the person I am today because of what this place &mdash; and the people who made it possible for me to be here &mdash; gave me.&rdquo;
+        </blockquote>
+        <cite>Brant Lake alum &middot; Scholarship recipient, 1990s</cite>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============== DONATE BAND ============== -->
+  <section class="donate-band" id="donate">
+    <div class="wrap">
+      <div class="donate-grid">
+        <div>
+          <span class="eyebrow on-dark">Your gift, doubled</span>
+          <h2 style="margin-top:0.85rem;">Send a boy to Brant Lake.</h2>
+          <span class="divider on-dark"></span>
+          <p class="lead">The camp directors match half of every scholarship the Fund awards. That means your gift to the Andrew Dreyer Memorial Fund travels twice as far &mdash; toward a real boy, a real summer, a real change.</p>
+        </div>
+
+        <div class="donate-cta" aria-label="Make a donation">
+          <!-- PLACEHOLDER: if usaepay supports preset amounts via query params, wire each chip to its own URL -->
+          <div class="chips" role="group" aria-label="Suggested gift amount">
+            <button type="button" class="chip">$50</button>
+            <button type="button" class="chip">$100</button>
+            <button type="button" class="chip active">$250</button>
+            <button type="button" class="chip">$500</button>
+            <button type="button" class="chip">Other</button>
+          </div>
+          <!-- PLACEHOLDER: replace href with the live secure.usaepay.com URL -->
+          <a href="https://secure.usaepay.com/" class="btn btn-primary" style="align-self:flex-start;padding:18px 32px;font-size:1rem;" rel="noopener">
+            Donate Securely
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <p class="donate-fineprint">
+            <strong>The Andrew Dreyer Memorial Fund</strong> is a 501(c)(3) charitable organization.
+            All contributions are tax-deductible to the fullest extent allowed by law.
+            <br />Tax ID 13&#8209;3431246.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CONTACT ============== -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <span class="eyebrow">Get in touch</span>
+          <h2 style="margin-top:0.85rem;">Questions about the Fund?</h2>
+          <span class="divider"></span>
+          <p class="lead">
+            The Fund is administered by alumni. Bill Frischling answers questions personally &mdash;
+            about how to give, how scholarships are awarded, or how to honor someone with a contribution.
+          </p>
+          <p>
+            Checks can be mailed; gifts of any size are welcome.
+          </p>
+        </div>
+
+        <aside class="contact-card" aria-label="Contact information">
+          <div class="name">Bill Frischling</div>
+          <div class="role">Fund Administrator &middot; Brant Lake Camp Alumni</div>
+
+          <dl>
+            <div>
+              <dt>Mail to</dt>
+              <!-- PLACEHOLDER: confirm current mailing address on brantlake.com -->
+              <dd>[Andrew Dreyer Memorial Fund mailing address]</dd>
+            </div>
+            <div>
+              <dt>Phone</dt>
+              <!-- PLACEHOLDER: replace with live phone from brantlake.com -->
+              <dd><a href="tel:+10000000000">[phone number]</a></dd>
+            </div>
+            <div>
+              <dt>Email</dt>
+              <!-- PLACEHOLDER: replace with live email from brantlake.com -->
+              <dd><a href="mailto:bill@example.com">[email address]</a></dd>
+            </div>
+          </dl>
+
+          <div class="accred">
+            <span class="badge" aria-hidden="true">ACA</span>
+            <span>American Camp Association accredited &middot; Brant Lake Camp, est. 1916</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer>
+    <div class="wrap">
+      <div>
+        <span class="brand">BRANT LAKE CAMP</span>
+        <span style="margin: 0 0.6em;">&middot;</span>
+        Adirondack Park, New York
+        <span style="margin: 0 0.6em;">&middot;</span>
+        Est. 1916
+      </div>
+      <div>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sticky mobile mini-CTA -->
+  <div class="sticky-cta">
+    <!-- PLACEHOLDER: replace href with the live secure.usaepay.com URL -->
+    <a href="#donate" class="btn btn-primary" aria-label="Donate to the Andrew Dreyer Memorial Fund">
+      Donate
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+</body>
+</html>
